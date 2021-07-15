@@ -34,22 +34,11 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/admin/cari-siswa', [HomeController::class,'searchStudent'])->name('dashboard.search');
     Route::resource('pegawai', EmployeeController::class);
     Route::post('/pegawai/cari', [EmployeeController::class,'searchEmployee'])->name('search.employee');
-    // Route::resource('akun-sekolah', UserController::class);
     Route::resource('jabatan', JobTitleController::class);
     Route::resource('golongan', SectionController::class);
-    // Route::post('siswa-import', [StudentController::class,'studentImport'])->name('student.import');
-    // Route::post('siswa-update-import', [StudentController::class,'studentUpdateImport'])->name('student.import.update');
-    // Route::get('format-export-siswa', [StudentController::class,'studentExportFormat'])->name('student.format.export');
-    // Route::get('/siswa-sd', [StudentController::class,'indexSd'])->name('student.sd');
-    // Route::get('/siswa-smp', [StudentController::class,'indexSmp'])->name('student.smp');
-    // Route::get('/admin/download-file/{type}/name/{name}', [HomeController::class,'downloadFile'])->name('admin.download');
-    // Route::get('surat-keterangan/{id}', [StudentController::class,'statementLetter'])->name('statement_letter');
-    // Route::get('format-surat-keterangan/{id}', [HomeController::class,'downloadLetter'])->name('statement_letter2');
 });
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::resource('presensi', PresenceController::class);
 });
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
