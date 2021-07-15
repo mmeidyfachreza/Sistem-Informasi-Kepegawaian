@@ -76,7 +76,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{asset('assets/dist/img/bontang.png')}}" alt="logo" class="brand-image" style="max-height:44px">
+      <img src="{{asset('assets/dist/img/logo.png')}}" alt="logo" class="brand-image" style="max-height:44px">
       <span class="brand-text font-weight-light">SI Kepegawaian</span>
     </a>
 
