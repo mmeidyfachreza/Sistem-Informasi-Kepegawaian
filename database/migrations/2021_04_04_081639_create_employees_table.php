@@ -30,7 +30,7 @@ class CreateEmployeesTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->bigInteger('job_title_id')->unsigned();
             $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('cascade');
-            $table->text('photo')->default("default.jpg");
+            $table->varchar('photo')->default("default.jpg");
             $table->timestamps();
         });
     }
