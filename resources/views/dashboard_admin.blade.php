@@ -71,6 +71,41 @@
         <section>
             <div class="card card-primary">
                 <div class="card-header">
+                    <h3 class="card-title">Monitoring Presensi Pegawai</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Nama</th>
+                          <th>Tanggal</th>
+                          <th>Jam Datang</th>
+                          <th>Jam Pulang</th>
+                          {{-- <th>Aksi</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <?php $x=1?>
+                          @foreach ($presences as $key => $presence)
+                              <tr>
+                                  <td>{{$presences->firstItem() + $key}}</td>
+                                  <td>{{$presence->employee->name}}</td>
+                                  <td>{{$presence->date}}</td>
+                                  <td>{{$presence->arrival_time}}</td>
+                                  <td>{{$presence->return_time}}</td>
+                              </tr>
+                          @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                  {{$presences->setPath(url()->current())->links('pagination::bootstrap-4')}}
+            </div>
+        </section>
+        <section>
+            <div class="card card-primary">
+                <div class="card-header">
                     <h3 class="card-title">Pencarian Data Pegawai</h3>
                 </div>
                 <!-- /.card-header -->

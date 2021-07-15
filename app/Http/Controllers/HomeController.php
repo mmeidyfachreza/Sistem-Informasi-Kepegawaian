@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Presence;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,7 +31,8 @@ class HomeController extends Controller
             $pnsCount = Employee::where('employee_status','pns')->count();
             $honorerCount = Employee::where('employee_status','honorer')->count();
             $employeeCount = Employee::count();
-            return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount'));
+            $presences = Presence::with('employee')->orderBy('date','desc')->paginate();
+            return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount','presences'));
         }else{
             // $schoolsName = School::find(auth()->guard("web")->user()->school_id);
             // $studentCount = Student::whereHas('school',function($q){$q->where("id",auth()->guard('web')->user()->school_id);})->count();

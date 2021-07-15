@@ -10,9 +10,9 @@ class Presence extends Model
     use HasFactory;
     protected $fillable = ['employee_id','arrival_time','return_time','date'];
 
-    public function jobTitle()
+    public function employee()
     {
-        return $this->belongsTo(JobTitle::class);
+        return $this->belongsTo(Employee::class);
     }
 
     public function scopeIsArrival($query)
