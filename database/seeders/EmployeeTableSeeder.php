@@ -29,6 +29,7 @@ class EmployeeTableSeeder extends Seeder
             "address" => "Jl.Harapan Baru",
             "religion" => "Islam",
             "education" => "S1",
+            "major" => "Teknik Informatika",
             "entry_year" => "2020",
             "job_title_id" => 1,
             "section_id" => 2,
