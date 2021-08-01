@@ -20,6 +20,7 @@ class Employee extends Model
         'marital_status',
         'address',
         'religion',
+        'education',
         'entry_year',
         'section_id',
         'job_title_id',

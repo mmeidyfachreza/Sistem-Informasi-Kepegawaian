@@ -84,6 +84,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Pendidikan</label>
+                                <select class="form-control select2" style="width: 100%;" name="education">
+                                    @foreach ($educations as $data)
+                                    <option value="{{$data}}" @if ($employee->education==$data) selected @endif>{{$data}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="address">Alamat</label>
                                 <textarea class="form-control" id="address" name="address" id="address" cols="30" rows="2" required>{{$employee->address}}</textarea>
                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Presence;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -55,5 +56,41 @@ class HomeController extends Controller
             // $student = Student::with('school')->dashboardSearch($request->all())->first();
             // return view('dashboard',compact('page','studentCount','schoolsName','student'));
         }
+    }
+
+    public function employeePresence($id)
+    {
+        $employee = Employee::find($id)->only('id','name');
+        $presences = Presence::with('employee')->where('employee_id',$id)->paginate();
+        return view('admin.employee_presence',compact('presences','employee'));
+    }
+
+    public function printPresence($id)
+    {
+        $employee = Employee::find($id)->only('id','name','nip');
+
+        $presences = Presence::with('employee')->where('employee_id',$id)->get();
+        return view('admin.print_presence',compact('presences','employee'));
+    }
+
+    public function mergeQueryPaginate(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Pagination\LengthAwarePaginator
+    {
+        $raw_query = $query;
+        $totalCount = $raw_query->get()->count();
+
+        $perPage = request('per-page', 10);
+        $page = request('page', 1);
+        $skip = $perPage * ($page - 1);
+        $raw_query = $raw_query->take($perPage)->skip($skip);
+
+        $parameters = request()->getQueryString();
+        $parameters = preg_replace('/&page(=[^&]*)?|^page(=[^&]*)?&?/', '', $parameters);
+        $path = url(request()->getPathInfo() . '?' . $parameters);
+
+        $rows = $raw_query->get();
+
+        $paginator = new LengthAwarePaginator($rows, $totalCount, $perPage, $page);
+        $paginator = $paginator->withPath($path);
+        return $paginator;
     }
 }

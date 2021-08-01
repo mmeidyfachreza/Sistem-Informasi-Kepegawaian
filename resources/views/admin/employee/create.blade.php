@@ -83,6 +83,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Pendidikan</label>
+                                <select class="form-control select2" style="width: 100%;" name="education">
+                                    @foreach ($educations as $education)
+                                    <option value="{{$education}}" {{ $education == old('education') ? 'selected' : '' }}>{{$education}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="address">Alamat</label>
                                 <textarea class="form-control" id="address" name="address" id="address" cols="30" rows="2" required></textarea>
                             </div>

@@ -24,7 +24,7 @@
                 <div class="card-header">
                   <h4 class="card-title w-100">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                        <span><i class="nav-icon fas fa-search"></i></span>&nbsp;&nbsp;Catat Presensi
+                        <span><i class="nav-icon fa fa-pen"></i></span>&nbsp;&nbsp;Catat Presensi
                     </a>
                   </h4>
                 </div>
@@ -76,7 +76,7 @@
                             <?php $x=1?>
                             @foreach ($presences as $key => $presence)
                                 <tr>
-                                    <td>{{$presences->firstItem() + $key}}</td>
+                                    <td>{{$presences->lastItem() - $key}}</td>
                                     <td>{{$presence->date}} @if ($presence->date == now()->toDateString('Y-m-d')) <span class="right badge badge-primary">Hari Ini</span> @endif</td>
                                     <td>{{$presence->arrival_time}}</td>
                                     <td>{{$presence->return_time}}</td>

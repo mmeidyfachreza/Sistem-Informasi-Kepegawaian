@@ -18,9 +18,9 @@
              with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
                 <a href="{{route('admin.home')}}" class="nav-link active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-home"></i>
                     <p>
-                        Dashboard
+                        Beranda
                     </p>
                 </a>
             </li>
@@ -35,7 +35,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('jabatan.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
+                    <i class="nav-icon fas fa-users"></i>
                     <p>
                         Jabatan
                     </p>
@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('golongan.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
+                    <i class="nav-icon fas fa-user-tag"></i>
                     <p>
                         Golongan
                     </p>
@@ -51,7 +51,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('presensi.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
+                    <i class="nav-icon fas fa-clipboard-check"></i>
                     <p>
                         Presensi
                     </p>

@@ -104,6 +104,8 @@
                                                         class="fa fa-trash"></i></button>
                                             </form>
                                             @endif
+                                            <a class="btn btn-success" href="{{route('presensi.pegawai',$employee->id)}}"><i
+                                                class="fa fa-list"></i></a>
                                         </div>
                                     </td>
                                 </tr>

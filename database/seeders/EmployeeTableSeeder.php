@@ -28,6 +28,7 @@ class EmployeeTableSeeder extends Seeder
             "blood_type" => 'A',
             "address" => "Jl.Harapan Baru",
             "religion" => "Islam",
+            "education" => "S1",
             "entry_year" => "2020",
             "job_title_id" => 1,
             "section_id" => 2,

@@ -38,9 +38,10 @@ class EmployeeController extends Controller
         $maritals = array("menikah","belum menikah");
         $user_types = array("staff","admin");
         $religions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu');
+        $educations = array('SD', 'SMA', 'SMK', 'D3', 'S1/D4', 'S2', 'S3');
         $jobTitles = JobTitle::all();
         $sections = Section::all();
-        return view('admin.employee.create',compact('page','genders','status','maritals','religions','jobTitles','user_types','sections'));
+        return view('admin.employee.create',compact('page','genders','status','maritals','religions','jobTitles','user_types','sections','educations'));
     }
 
     /**
@@ -105,10 +106,11 @@ class EmployeeController extends Controller
         $maritals = array("menikah","belum menikah");
         $user_types = array("staff","admin");
         $religions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu');
+        $educations = array('SD', 'SMA', 'SMK', 'D3', 'S1/D4', 'S2', 'S3');
         $jobTitles = JobTitle::all();
         $sections = Section::all();
         $employee = Employee::with('jobTitle','section')->find($id);
-        return view('admin.employee.edit',compact('page','genders','status','maritals','religions','jobTitles','user_types','employee','sections'));
+        return view('admin.employee.edit',compact('page','genders','status','maritals','religions','jobTitles','user_types','employee','sections','educations'));
     }
 
     /**

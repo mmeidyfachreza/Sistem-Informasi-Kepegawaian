@@ -25,6 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->enum("blood_type",['A','B','AB','O']);
             $table->text("address");
             $table->string("religion");
+            $table->string("education");
             $table->string("entry_year");
             $table->bigInteger('section_id')->unsigned()->nullable();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
