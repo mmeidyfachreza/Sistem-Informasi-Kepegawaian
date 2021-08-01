@@ -71,7 +71,7 @@ class HomeController extends Controller
         $employee = Employee::find($request->employee_id)->only('id','name','nip');
         $date = explode('-',$request->month);
         $presences = Presence::with('employee')->where('employee_id',$request->employee_id)->whereYear('date',$date[0])->whereMonth('date',str_replace('0','',$date[1]))->get();
-        return view('admin.print_presence',compact('presences','employee'));
+        return view('admin.print_presence',compact('presences','employee','request'));
     }
 
     public function mergeQueryPaginate(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Pagination\LengthAwarePaginator

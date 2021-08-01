@@ -25,8 +25,9 @@
 
 </head>
 <body>
-    <p>Nama : <b>{{$employee['name']}}</b></p>
-    <p>NIP : <b>{{$employee['nip']}}</b></p>
+    <p>Nama    : <b>{{$employee['name']}}</b></p>
+    <p>NIP     : <b>{{$employee['nip']}}</b></p>
+    <p>Tanggal : <b>{{$request->month}}</b></p>
     <br>
 <table>
     <thead>
