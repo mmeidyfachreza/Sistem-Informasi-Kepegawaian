@@ -78,6 +78,14 @@
                                             <td>{{$employee->religion}}</td>
                                         </tr>
                                         <tr>
+                                            <td>Pendidikan</td>
+                                            <td>{{$employee->education}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jurusan</td>
+                                            <td>{{$employee->major}}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Jenis Kelamin</td>
                                             <td>{{$employee->gender}}</td>
                                         </tr>

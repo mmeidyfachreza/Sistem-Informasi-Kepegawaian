@@ -28,8 +28,13 @@
                         <div style="float:left" class="card-title">Presensi {{$employee['name']}}</div>
                         <div style="float:right">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{route('cetak.presensi',$employee['id'])}}" class="btn btn-success btn-sm" target="_blank"><i
-                                    class="fa fa-print"></i>&nbsp Cetak Data</a>
+                                <form action="{{route('cetak.presensi')}}" method="GET" target="_blank">
+                                    @csrf
+                                    <input type="month" name="month" id="month" value="{{$date}}">
+                                    <input type="hidden" value="{{$employee['id']}}" name="employee_id">
+                                    <button type="submit" class="btn btn-success btn-sm"><i
+                                        class="fa fa-print"></i>&nbsp Cetak Data</button>
+                                </form>
                             </div>
                         </div>
                     </div>

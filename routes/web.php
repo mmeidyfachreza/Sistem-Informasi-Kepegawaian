@@ -37,7 +37,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::resource('jabatan', JobTitleController::class);
     Route::resource('golongan', SectionController::class);
     Route::get('/admin/pegawai/presensi/{id}', [HomeController::class,'employeePresence'])->name('presensi.pegawai');
-    Route::get('/admin/pegawai/presensi/{id}/cetak', [HomeController::class,'printPresence'])->name('cetak.presensi');
+    Route::get('/admin/pegawai/presensi-cetak', [HomeController::class,'printPresence'])->name('cetak.presensi');
 });
 
 Route::group(['middleware'=>'auth'], function() {

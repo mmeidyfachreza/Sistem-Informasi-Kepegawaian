@@ -21,6 +21,7 @@ class Employee extends Model
         'address',
         'religion',
         'education',
+        'major',
         'entry_year',
         'section_id',
         'job_title_id',

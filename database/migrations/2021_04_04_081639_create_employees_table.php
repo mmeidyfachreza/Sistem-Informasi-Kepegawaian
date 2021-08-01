@@ -26,6 +26,7 @@ class CreateEmployeesTable extends Migration
             $table->text("address");
             $table->string("religion");
             $table->string("education");
+            $table->string("major");
             $table->string("entry_year");
             $table->bigInteger('section_id')->unsigned()->nullable();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');

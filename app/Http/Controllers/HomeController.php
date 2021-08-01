@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\Presence;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //dd(now()->toDateString('Y-m-d'));
         if (auth()->user()->user_type == "admin") {
             //$schools = School::withCount(['students','students as without_ijazah'=>function($q){$q->whereNull('ijazah');}])->paginate(5);
             $pnsCount = Employee::where('employee_status','pns')->count();
@@ -60,16 +60,18 @@ class HomeController extends Controller
 
     public function employeePresence($id)
     {
+        $date = Carbon::now()->format('Y-m');
         $employee = Employee::find($id)->only('id','name');
         $presences = Presence::with('employee')->where('employee_id',$id)->paginate();
-        return view('admin.employee_presence',compact('presences','employee'));
+        return view('admin.employee_presence',compact('presences','employee','date'));
     }
 
-    public function printPresence($id)
+    public function printPresence(Request $request)
     {
-        $employee = Employee::find($id)->only('id','name','nip');
+        $employee = Employee::find($request->employee_id)->only('id','name','nip');
+        $date = explode('-',$request->month);
 
-        $presences = Presence::with('employee')->where('employee_id',$id)->get();
+        $presences = Presence::with('employee')->where('employee_id',$request->employee_id)->whereYear('date',$date[0])->whereMonth('date',str_replace('0','',$date[1]))->get();
         return view('admin.print_presence',compact('presences','employee'));
     }
 

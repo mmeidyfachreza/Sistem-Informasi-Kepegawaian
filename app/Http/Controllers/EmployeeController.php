@@ -106,7 +106,7 @@ class EmployeeController extends Controller
         $maritals = array("menikah","belum menikah");
         $user_types = array("staff","admin");
         $religions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu');
-        $educations = array('SD', 'SMA', 'SMK', 'D3', 'S1/D4', 'S2', 'S3');
+        $educations = array('SD', 'SMA', 'SMK', 'D3', 'D4', 'S1', 'S2', 'S3');
         $jobTitles = JobTitle::all();
         $sections = Section::all();
         $employee = Employee::with('jobTitle','section')->find($id);

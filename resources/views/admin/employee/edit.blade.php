@@ -92,6 +92,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="major">Jurusan</label>
+                                <input type="text" class="form-control" id="major" name="major" value="{{old('major', $employee->major)}}"placeholder="Masukan Jurusan" required>
+                                </div>
+                            <div class="form-group">
                                 <label for="address">Alamat</label>
                                 <textarea class="form-control" id="address" name="address" id="address" cols="30" rows="2" required>{{$employee->address}}</textarea>
                             </div>
