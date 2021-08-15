@@ -31,7 +31,7 @@
             <!-- ./col -->
             @endisset
             @isset($pnsCount)
-            <div class="col-lg-6 col-9">
+            <div class="col-lg-6 col-12">
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
@@ -49,7 +49,7 @@
             <!-- ./col -->
             @endisset
             @isset($honorerCount)
-            <div class="col-lg-6 col-9">
+            <div class="col-lg-6 col-12">
                 <!-- small box -->
                 <div class="small-box bg-primary">
                     <div class="inner">
