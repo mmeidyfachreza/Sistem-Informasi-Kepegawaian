@@ -42,5 +42,6 @@ Route::group(['middleware'=>'admin'], function() {
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/', [HomeController::class,'index'])->name('home');
+    Route::get('/profil', [HomeController::class,'profile'])->name('profile');
     Route::resource('presensi', PresenceController::class);
 });

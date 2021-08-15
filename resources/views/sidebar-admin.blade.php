@@ -6,7 +6,7 @@
             <img src="{{asset('storage/photos/'.auth()->user()->employee->photo)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">{{auth()->user()->employee->name}} <span style="position: absolute;
+            <a href="{{route('profile')}}" class="d-block">{{auth()->user()->employee->name}} <span style="position: absolute;
                 right: 1rem;
                 top: .5rem;" class="right badge badge-success">Admin</span></a>
         </div>

@@ -89,4 +89,11 @@ class HomeController extends Controller
         $paginator = $paginator->withPath($path);
         return $paginator;
     }
+
+    public function profile()
+    {
+        $page = "Profil";
+        $employee = Employee::with('jobTitle','section')->findOrFail(auth()->user()->employee->id);
+        return view('admin.employee.show',compact('employee','page'));
+    }
 }
