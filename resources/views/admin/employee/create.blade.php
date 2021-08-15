@@ -124,7 +124,7 @@
                                             <div class="custom-control custom-radio">
                                                 <input class="custom-control-input" type="radio" id="{{$data}}" name="employee_status" value="{{$data}}" @if ($data == "pns") checked @endif onclick="myFunction()">
                                                 <label for="{{$data}}" class="custom-control-label">{{$data}}</label>
-                                              </div>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -142,12 +142,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Tahun Diterima</label>
-                                  <div class="input-group date" id="reservationdate3" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="entry_year" value="{{old('entry_year')}}" required/>
-                                      <div class="input-group-append" data-target="#reservationdate3" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                      </div>
-                                  </div>
+                                <div class="input-group date" id="reservationdate3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="entry_year" value="{{old('entry_year')}}" required/>
+                                    <div class="input-group-append" data-target="#reservationdate3" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
