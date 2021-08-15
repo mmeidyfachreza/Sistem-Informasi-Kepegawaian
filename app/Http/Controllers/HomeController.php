@@ -28,33 +28,28 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->user_type == "admin") {
-            //$schools = School::withCount(['students','students as without_ijazah'=>function($q){$q->whereNull('ijazah');}])->paginate(5);
             $pnsCount = Employee::where('employee_status','pns')->count();
             $honorerCount = Employee::where('employee_status','honorer')->count();
             $employeeCount = Employee::count();
             $presences = Presence::with('employee')->orderBy('date','desc')->paginate();
             return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount','presences'));
         }else{
-            // $schoolsName = School::find(auth()->guard("web")->user()->school_id);
-            // $studentCount = Student::whereHas('school',function($q){$q->where("id",auth()->guard('web')->user()->school_id);})->count();
             return view('dashboard');
         }
 
     }
 
-    public function searchStudent(Request $request)
+    public function searchEmployee(Request $request)
     {
         if (auth()->user()->user_type == "admin") {
             $pnsCount = Employee::where('employee_status','pns')->count();
             $honorerCount = Employee::where('employee_status','honorer')->count();
             $employeeCount = Employee::count();
             $employee = Employee::with('jobTitle')->dashboardSearch($request->all())->first();
-            return view('dashboard',compact('pnsCount','honorerCount','employeeCount','employee'));
+            $presences = Presence::with('employee')->orderBy('date','desc')->paginate();
+            return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount','employee','presences'));
         }else{
-            // $studentCount = Student::whereHas('school',function($q){$q->where("id",auth()->guard('web')->user()->school_id);})->count();
-            // $schoolsName = School::find(auth()->guard("web")->user()->school_id);
-            // $student = Student::with('school')->dashboardSearch($request->all())->first();
-            // return view('dashboard',compact('page','studentCount','schoolsName','student'));
+            //
         }
     }
 

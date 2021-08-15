@@ -31,7 +31,7 @@ Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
 //Admin Home page after login
 Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin/home', [HomeController::class,'index'])->name('admin.home');
-    Route::post('/admin/cari-siswa', [HomeController::class,'searchStudent'])->name('dashboard.search');
+    Route::post('/admin/cari-pegawai', [HomeController::class,'searchEmployee'])->name('dashboard.search');
     Route::resource('pegawai', EmployeeController::class);
     Route::post('/pegawai/cari', [EmployeeController::class,'searchEmployee'])->name('search.employee');
     Route::resource('jabatan', JobTitleController::class);
