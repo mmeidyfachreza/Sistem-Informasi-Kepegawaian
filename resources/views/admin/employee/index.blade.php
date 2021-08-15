@@ -26,11 +26,11 @@
         <div id="accordion">
             <div class="card card-primary">
                 <div class="card-header">
-                  <h4 class="card-title w-100">
+                    <h4 class="card-title w-100">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
                         <span><i class="nav-icon fas fa-search"></i></span>&nbsp;&nbsp;Pencarian
                     </a>
-                  </h4>
+                    </h4>
                 </div>
                 <div id="collapseOne" class="collapse @isset($request) show @endisset" data-parent="#accordion">
                     <form action="{{route('search.employee')}}" method="POST">
@@ -38,14 +38,14 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="value">NIP/Nama Karyawan</label>
-                                <input type="text" class="form-control" id="value" name="name" placeholder="masukan NISN/Nama pegawai" value="{{old('nisn',$request->value ?? "")}}" required>
+                                <input type="text" class="form-control" id="value" name="value" placeholder="masukan NISN/Nama pegawai" value="{{old('nisn',$request->value ?? "")}}" required>
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                           <button type="submit" class="btn btn-primary">Cari</button>
                             @isset($request)
-                            <a href="{{route('employee.index')}}" class="btn btn-danger">Batalkan</a>
+                            <a href="{{route('pegawai.index')}}" class="btn btn-danger">Batalkan</a>
                             @endisset
                         </div>
                       </form>

@@ -166,16 +166,16 @@ class EmployeeController extends Controller
         return redirect()->route('pegawai.index')->with('success','Berhasil menghapus data');
     }
 
-    public function searchByNIP(Request $request)
+    public function search(Request $request)
     {
-        $page = "Dashboard";
-        $employee = Employee::searchByNIP($request->nip)->first();
-        return view('dashboard',compact('employee','page'));
+        $page = "Pegawai";
+        $employees = Employee::with('jobTitle')->search($request->value)->paginate();
+        return view('admin.employee.index',compact('page','employees','request'));
     }
 
     public function searchEmployee(Request $request)
     {
-        $page = 'Siswa '.strtoupper($request->level);
+        $page = 'Pegawai '.strtoupper($request->level);
         $employees = Employee::with('jobTitle')->filterBy($request->all())->paginate();
 
         return view('admin.employee.index',compact('page','employees','request'));

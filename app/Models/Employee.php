@@ -49,9 +49,10 @@ class Employee extends Model
         $this->attributes['birth_date'] = date('Y-m-d', strtotime($value));
     }
 
-    public function scopeSearchByNIP($query,$value)
+    public function scopeSearch($query,$value)
     {
-        return $query->where('nip','like','%'.$value.'%');
+        return $query->where('nip','like','%'.$value.'%')
+                ->orWhere('name','like','%'.$value.'%');
     }
 
     public function scopeDashboardSearch($querry,$request)
