@@ -6,31 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
-class Employee extends Model
+class Karyawan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'nip',
-        'name',
-        'birth_date',
-        'birth_place',
-        'gender',
-        'employee_status',
-        'marital_status',
-        'address',
-        'religion',
-        'education',
-        'major',
-        'entry_year',
-        'section_id',
-        'job_title_id',
-        'photo',
+        'nama',
+        'tanggal_lahir',
+        'tempat_lahir',
+        'jenis_kelamin',
+        'status_pegawai',
+        'status_pernikahan',
+        'alamat',
+        'agama',
+        'pendidikan',
+        'jurusan',
+        'tahun_masuk',
+        'golongan_id',
+        'jabatan_id',
+        'foto',
     ];
 
-    public function jobTitle()
+    public function jabatan()
     {
-        return $this->belongsTo(JobTitle::class);
+        return $this->belongsTo(Jabatan::class);
     }
 
     public function user()
@@ -38,21 +38,21 @@ class Employee extends Model
         return $this->hasOne(User::class);
     }
 
-    public function section()
+    public function golongan()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Golongan::class);
     }
 
 
-    public function setBirthDateAttribute($value)
+    public function setTanggalLahirAttribute($value)
     {
-        $this->attributes['birth_date'] = date('Y-m-d', strtotime($value));
+        $this->attributes['tanggal_lahir'] = date('Y-m-d', strtotime($value));
     }
 
     public function scopeSearch($query,$value)
     {
         return $query->where('nip','like','%'.$value.'%')
-                ->orWhere('name','like','%'.$value.'%');
+                ->orWhere('nama','like','%'.$value.'%');
     }
 
     public function scopeDashboardSearch($querry,$request)

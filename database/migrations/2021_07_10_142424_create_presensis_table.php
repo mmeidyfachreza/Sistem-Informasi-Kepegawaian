@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreatePresensisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('presensis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('karyawan_id')->unsigned();
             $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
-            $table->string('username',30)->unique();
-            $table->string('password');
-            $table->enum("tipe-user",['staff','admin']);
-            $table->rememberToken();
+            $table->time('jam_datang');
+            $table->time('jam_pulang')->nullable();
+            $table->enum('izin',['izin','sakit']);
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
@@ -32,9 +32,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('presensis', function (Blueprint $table) {
             $table->dropForeign(['karyawan_id']);
         });
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('presensis');
     }
 }
