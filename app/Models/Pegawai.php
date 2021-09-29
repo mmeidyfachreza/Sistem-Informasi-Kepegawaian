@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
-class Karyawan extends Model
+class Pegawai extends Model
 {
     use HasFactory;
 
+    protected $table = 'pegawai';
     protected $fillable = [
         'nip',
         'nama',
@@ -25,7 +26,6 @@ class Karyawan extends Model
         'tahun_masuk',
         'golongan_id',
         'jabatan_id',
-        'foto',
     ];
 
     public function jabatan()

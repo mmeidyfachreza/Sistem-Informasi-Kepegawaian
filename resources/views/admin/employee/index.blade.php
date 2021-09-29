@@ -87,9 +87,9 @@
                                 @foreach ($employees as $key => $employee)
                                 <tr>
                                     <td>{{$employees->firstItem() + $key}}</td>
-                                    <td>{{$employee->name}}</td>
+                                    <td>{{$employee->nama}}</td>
                                     <td>{{$employee->nip}}</td>
-                                    <td>{{$employee->employee_status}}</td>
+                                    <td>{{$employee->status_pegawai}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-info" href="{{route('pegawai.show',$employee->id)}}"><i

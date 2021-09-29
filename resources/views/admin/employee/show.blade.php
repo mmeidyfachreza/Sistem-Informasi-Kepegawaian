@@ -27,10 +27,10 @@
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
-                                        src="{{asset('storage/photos/'.$employee->photo)}}" alt="User profile picture">
+                                        src="{{asset('storage/foto/'.$employee->foto)}}" alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center">{{$employee->name}}</h3>
+                        <h3 class="profile-username text-center">{{$employee->nama}}</h3>
 
                     </div>
                     <!-- /.card-body -->
@@ -59,57 +59,57 @@
                                         </tr>
                                         <tr>
                                             <td>Nama</td>
-                                            <td>{{$employee->name}}</td>
+                                            <td>{{$employee->nama}}</td>
                                         </tr>
                                         <tr>
                                             <td>Alamat</td>
-                                            <td>{{$employee->address}}</td>
+                                            <td>{{$employee->alamat}}</td>
                                         </tr>
                                         <tr>
                                             <td>Tempat Lahir</td>
-                                            <td>{{$employee->birth_place}}</td>
+                                            <td>{{$employee->tempat_lahir}}</td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Lahir</td>
-                                            <td>{{date('d-m-Y', strtotime($employee->birth_date))}}</td>
+                                            <td>{{date('d-m-Y', strtotime($employee->tanggal_lahir))}}</td>
                                         </tr>
                                         <tr>
                                             <td>Agama</td>
-                                            <td>{{$employee->religion}}</td>
+                                            <td>{{$employee->agama}}</td>
                                         </tr>
                                         <tr>
                                             <td>Pendidikan</td>
-                                            <td>{{$employee->education}}</td>
+                                            <td>{{$employee->pendidikan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Jurusan</td>
-                                            <td>{{$employee->major}}</td>
+                                            <td>{{$employee->jurusan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Jenis Kelamin</td>
-                                            <td>{{$employee->gender}}</td>
+                                            <td>{{$employee->jenis_kelamin}}</td>
                                         </tr>
                                         <tr>
                                             <td>Status Menikah</td>
-                                            <td>{{$employee->marital_status}}</td>
+                                            <td>{{$employee->status_pernikahan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Jabatan</td>
-                                            <td>{{$employee->jobTitle->name}}</td>
+                                            <td>{{$employee->jabatan->nama}}</td>
                                         </tr>
                                         <tr>
                                             <td>Status Kepegawaian</td>
-                                            <td>{{$employee->employee_status}}</td>
+                                            <td>{{$employee->status_pegawai}}</td>
                                         </tr>
-                                        @if ($employee->employee_status == "pns")
+                                        @if ($employee->status_pegawai == "pns")
                                         <tr>
                                             <td>Golongan PNS</td>
-                                            <td>{{$employee->section->name}}</td>
+                                            <td>{{$employee->golongan->nama}}</td>
                                         </tr>
                                         @endif
                                         <tr>
                                             <td>Tahun Diterima</td>
-                                            <td>{{$employee->entry_year}}</td>
+                                            <td>{{$employee->tahun_masuk}}</td>
                                         </tr>
 
                                     </tbody>

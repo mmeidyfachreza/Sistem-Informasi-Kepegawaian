@@ -13,7 +13,7 @@ class CreateGolongansTable extends Migration
      */
     public function up()
     {
-        Schema::create('golongans', function (Blueprint $table) {
+        Schema::create('golongan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateGolongansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('golongans');
+        Schema::dropIfExists('golongan');
     }
 }

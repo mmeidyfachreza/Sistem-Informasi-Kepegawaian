@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Presensi {{$employee['name']}}</title>
+    <title>Presensi {{$employee['nama']}}</title>
     <style>
         table {
           font-family: arial, sans-serif;
@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <p>Nama    : <b>{{$employee['name']}}</b></p>
+    <p>Nama    : <b>{{$employee['nama']}}</b></p>
     <p>NIP     : <b>{{$employee['nip']}}</b></p>
     <p>Tanggal : <b>{{$request->month}}</b></p>
     <br>
@@ -40,9 +40,9 @@
     <tbody>
         @foreach ($presences as $presence)
         <tr>
-            <td>{{$presence->date}}</td>
-            <td>{{$presence->arrival_time}}</td>
-            <td>{{$presence->return_time}}</td>
+            <td>{{$presence->tangal}}</td>
+            <td>{{$presence->jam_datang}}</td>
+            <td>{{$presence->jam_pulang}}</td>
         </tr>
         @endforeach
     </tbody>

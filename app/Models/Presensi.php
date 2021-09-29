@@ -8,16 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Presensi extends Model
 {
     use HasFactory;
-    protected $fillable = ['karyawan_id','jam_datang','jam_pulang','tanggal'];
 
-    public function karyawan()
+    protected $table = 'presensi';
+    protected $fillable = ['pegawai_id','jam_datang','jam_pulang','tanggal'];
+
+    public function pegawai()
     {
         return $this->belongsTo(Karyawan::class);
     }
 
     public function scopeIsArrival($query)
     {
-        if ($this->where('karyawan_id',auth()->user()->karyawan->id)
+        if ($this->where('pegawai_id',auth()->user()->pegawai->id)
         ->where('tanggal',now()->toDateString('Y-m-d'))->first()) {
             return true;
         }else{
@@ -28,7 +30,7 @@ class Presensi extends Model
 
     public function scopeIsReturn($query)
     {
-        if ($this->where('karyawan_id',auth()->user()->karyawan->id)
+        if ($this->where('pegawai_id',auth()->user()->pegawai->id)
         ->where('tanggal',now()->toDateString('Y-m-d'))->whereNotNull('jam_pulang')->first()) {
             return true;
         }else{

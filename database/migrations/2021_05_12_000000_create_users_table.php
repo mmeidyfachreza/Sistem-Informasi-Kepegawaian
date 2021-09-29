@@ -15,12 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('karyawan_id')->unsigned();
-            $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
+            $table->bigInteger('pegawai_id')->unsigned();
+            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
             $table->string('username',30)->unique();
             $table->string('password');
-            $table->enum("tipe-user",['staff','admin']);
-            $table->rememberToken();
+            $table->enum("tipe_user",['staff','admin']);
             $table->timestamps();
         });
     }
@@ -33,7 +32,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['karyawan_id']);
+            $table->dropForeign(['pegawai_id']);
         });
         Schema::dropIfExists('users');
     }

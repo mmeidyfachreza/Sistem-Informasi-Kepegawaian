@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\JobTitle;
-use App\Models\Section;
+use App\Models\Golongan;
+use App\Models\Jabatan;
+use App\Models\Pegawai;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class EmployeeController extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('jobTitle')->paginate();
+        $employees = Pegawai::with('jabatan')->paginate();
         return view('admin.employee.index',compact('employees'));
     }
 
@@ -39,8 +39,8 @@ class EmployeeController extends Controller
         $user_types = array("staff","admin");
         $religions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu');
         $educations = array('SD', 'SMA', 'SMK', 'D3', 'S1/D4', 'S2', 'S3');
-        $jobTitles = JobTitle::all();
-        $sections = Section::all();
+        $jobTitles = Jabatan::all();
+        $sections = Golongan::all();
         return view('admin.employee.create',compact('page','genders','status','maritals','religions','jobTitles','user_types','sections','educations'));
     }
 
@@ -54,18 +54,18 @@ class EmployeeController extends Controller
     {
         DB::beginTransaction();
         try {
-            $employee = Employee::create($request->all());
-            if ($avatars = $request->file('photo')) {
-                $name = time().'.'.$avatars->getClientOriginalExtension();
-                $employee->photo = $name;
-                $photo = $request->photo->storeAs('public/photos',$name);
+            $employee = Pegawai::create($request->all());
+            if ($avatars = $request->file('foto')) {
+                $name = $request->nip.'-'.time().'.'.$avatars->getClientOriginalExtension();
+                $employee->foto = $name;
+                $foto = $request->foto->storeAs('public/foto',$name);
                 $employee->save();
             }
             User::create([
-                'employee_id' => $employee->id,
+                'pegawai_id' => $employee->id,
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
-                'user_type' => $request->user_type,
+                'tipe_user' => $request->tipe_user,
                 'remember_token' => Str::random(10),
             ]);
             DB::commit();
@@ -81,13 +81,13 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Pegawai  $employee
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $page = "Detail";
-        $employee = Employee::with('jobTitle','section')->findOrFail($id);
+        $employee = Pegawai::with('jabatan','golongan')->findOrFail($id);
         return view('admin.employee.show',compact('employee','page'));
 
     }
@@ -95,7 +95,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Pegawai  $employee
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -107,9 +107,9 @@ class EmployeeController extends Controller
         $user_types = array("staff","admin");
         $religions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu');
         $educations = array('SD', 'SMA', 'SMK', 'D3', 'D4', 'S1', 'S2', 'S3');
-        $jobTitles = JobTitle::all();
-        $sections = Section::all();
-        $employee = Employee::with('jobTitle','section')->find($id);
+        $jobTitles = Jabatan::all();
+        $sections = Golongan::all();
+        $employee = Pegawai::with('jabatan','golongan')->find($id);
         return view('admin.employee.edit',compact('page','genders','status','maritals','religions','jobTitles','user_types','employee','sections','educations'));
     }
 
@@ -117,24 +117,24 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Pegawai  $employee
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
         try {
-            $employee = Employee::findOrFail($id);
-            if ($photo = $request->file('photo')) {
-                Storage::delete('photo/'.$employee->photo);
-                $name = $request->name.'-'.time().'.'.$photo->getClientOriginalExtension();
-                $request->request->add(['photo' => $name]);
-                $request->photo->storeAs('public/photos',$name);
+            $employee = Pegawai::findOrFail($id);
+            if ($foto = $request->file('foto')) {
+                Storage::delete('foto/'.$employee->foto);
+                $name = $request->nip.'-'.time().'.'.$foto->getClientOriginalExtension();
+                $employee->foto = $name;
+                $request->foto->storeAs('public/foto',$name);
             }
             $employee->update($request->all());
             $user = User::findOrFail($employee->user->id);
             $user->username = $request->username;
-            $user->user_type = $request->user_type;
+            $user->tipe_user = $request->tipe_user;
             if($request->input('password')){
                 $user->password = Hash::make($request->password);
             }
@@ -152,16 +152,16 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Pegawai  $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $employee = Employee::find($id);
+        $employee = Pegawai::find($id);
         if (auth()->user()->id == $employee->id) {
             return redirect()->route('pegawai.index')->withErrors(['message'=>'Tidak dapat menghapus akun yang sedang login']);
         }
-        Storage::delete('photos/'.$employee->photo);
+        Storage::delete('foto/'.$employee->foto);
         $employee->delete();
         return redirect()->route('pegawai.index')->with('success','Berhasil menghapus data');
     }
@@ -169,14 +169,14 @@ class EmployeeController extends Controller
     public function search(Request $request)
     {
         $page = "Pegawai";
-        $employees = Employee::with('jobTitle')->search($request->value)->paginate();
+        $employees = Pegawai::with('jabatan')->search($request->value)->paginate();
         return view('admin.employee.index',compact('page','employees','request'));
     }
 
-    public function searchEmployee(Request $request)
+    public function searchPegawai(Request $request)
     {
         $page = 'Pegawai '.strtoupper($request->level);
-        $employees = Employee::with('jobTitle')->filterBy($request->all())->paginate();
+        $employees = Pegawai::with('jabatan')->filterBy($request->all())->paginate();
 
         return view('admin.employee.index',compact('page','employees','request'));
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKaryawansTable extends Migration
+class CreatePegawaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateKaryawansTable extends Migration
      */
     public function up()
     {
-        Schema::create('karyawans', function (Blueprint $table) {
+        Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
             $table->string("nip");
             $table->string("nama");
@@ -25,13 +25,13 @@ class CreateKaryawansTable extends Migration
             $table->enum("golongan_darah",['A','B','AB','O']);
             $table->text("alamat");
             $table->string("agama");
-            $table->string("pendidkan");
+            $table->string("pendidikan");
             $table->string("jurusan");
-            $table->string("tahun_diterima");
+            $table->string("tahun_masuk");
             $table->bigInteger('golongan_id')->unsigned()->nullable();
-            $table->foreign('golongan_id')->references('id')->on('golongans')->onDelete('cascade');
+            $table->foreign('golongan_id')->references('id')->on('golongan')->onDelete('cascade');
             $table->bigInteger('jabatan_id')->unsigned();
-            $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('cascade');
+            $table->foreign('jabatan_id')->references('id')->on('jabatan')->onDelete('cascade');
             $table->string('foto')->default("default.jpg");
             $table->timestamps();
         });
@@ -44,9 +44,10 @@ class CreateKaryawansTable extends Migration
      */
     public function down()
     {
-        Schema::table('karyawans', function (Blueprint $table) {
-            $table->dropForeign(['karyawan_id']);
+        Schema::table('pegawai', function (Blueprint $table) {
+            $table->dropForeign(['golongan_id']);
+            $table->dropForeign(['jabatan_id']);
         });
-        Schema::dropIfExists('karyawans');
+        Schema::dropIfExists('pegawai');
     }
 }

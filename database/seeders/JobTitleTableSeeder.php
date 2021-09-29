@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\JobTitle;
+use App\Models\Jabatan;
 use Illuminate\Database\Seeder;
 
 class JobTitleTableSeeder extends Seeder
@@ -16,7 +16,7 @@ class JobTitleTableSeeder extends Seeder
     {
         $data = array('Pimpinan','Staff','IT');
         foreach ($data as $value) {
-            JobTitle::create(['name'=>$value]);
+            Jabatan::create(['nama'=>$value]);
         }
     }
 }

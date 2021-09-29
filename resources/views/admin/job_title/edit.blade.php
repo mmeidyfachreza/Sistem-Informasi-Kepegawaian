@@ -37,8 +37,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nama jabatan</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{old('name', $jobTitle->name)}}"
+                                <label for="nama">Nama jabatan</label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama', $jobTitle->nama)}}"
                                     placeholder="Masukan Nama jabatan" required>
                             </div>
                         </div>

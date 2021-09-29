@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Presence;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 
-class PresenceController extends Controller
+class PresensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,13 @@ class PresenceController extends Controller
      */
     public function index()
     {
-        $presence = Presence::where('employee_id',auth()->user()->employee->id)
-        ->where('date',now()->toDateString('Y-m-d'))->first();
-        if (!Presence::isArrival()) {
+        $presence = Presensi::where('pegawai_id',auth()->user()->pegawai->id)
+        ->where('tanggal',now()->toDateString('Y-m-d'))->first();
+        if (!Presensi::isArrival()) {
             $button = "catat hadir";
             $type = "success";
             $status = "belum catat hadir";
-        }elseif (!Presence::isReturn()) {
+        }elseif (!Presensi::isReturn()) {
             $button = "catat pulang";
             $type = "warning";
             $status = "belum catat pulang";
@@ -29,7 +29,7 @@ class PresenceController extends Controller
             $type = "info";
             $status = "selesai melakukan seluruh presensi";
         }
-        $presences = Presence::where('employee_id',auth()->user()->employee->id)->orderBy('date','desc')->paginate();
+        $presences = Presensi::where('pegawai_id',auth()->user()->pegawai->id)->orderBy('tanggal','desc')->paginate();
         return view('index',compact('presences','button','type','status','presence'));
     }
 
@@ -51,11 +51,11 @@ class PresenceController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('arrival_time')) {
-            Presence::create(array_merge($request->all(),['employee_id'=>auth()->user()->employee->id]));
+        if ($request->input('jam_datang')) {
+            Presensi::create(array_merge($request->all(),['pegawai_id'=>auth()->user()->pegawai->id]));
             return redirect()->route('presensi.index')->with('success','Berhasil melakukan presensi');
         }else{
-            Presence::findOrFail($request->presence_id)->update($request->all());
+            Presensi::findOrFail($request->presensi_id)->update($request->all());
             return redirect()->route('presensi.index')->with('success','Berhasil melakukan presensi');
         }
     }
@@ -63,10 +63,10 @@ class PresenceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Presence  $presence
+     * @param  \App\Models\Presensi  $presence
      * @return \Illuminate\Http\Response
      */
-    public function show(Presence $presence)
+    public function show(Presensi $presence)
     {
         //
     }
@@ -74,10 +74,10 @@ class PresenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Presence  $presence
+     * @param  \App\Models\Presensi  $presence
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presence $presence)
+    public function edit(Presensi $presence)
     {
         //
     }
@@ -86,10 +86,10 @@ class PresenceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Presence  $presence
+     * @param  \App\Models\Presensi  $presence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presence $presence)
+    public function update(Request $request, Presensi $presence)
     {
         //
     }
@@ -97,10 +97,10 @@ class PresenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Presence  $presence
+     * @param  \App\Models\Presensi  $presence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presence $presence)
+    public function destroy(Presensi $presence)
     {
         //
     }

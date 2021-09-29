@@ -3,10 +3,10 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\JobTitleController;
-use App\Http\Controllers\PresenceController;
-use App\Http\Controllers\SectionController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\GolonganController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +32,10 @@ Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
 Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin/home', [HomeController::class,'index'])->name('admin.home');
     Route::post('/admin/cari-pegawai', [HomeController::class,'searchEmployee'])->name('dashboard.search');
-    Route::resource('pegawai', EmployeeController::class);
-    Route::post('/pegawai/cari', [EmployeeController::class,'search'])->name('search.employee');
-    Route::resource('jabatan', JobTitleController::class);
-    Route::resource('golongan', SectionController::class);
+    Route::resource('pegawai', PegawaiController::class);
+    Route::post('/pegawai/cari', [PegawaiController::class,'search'])->name('search.employee');
+    Route::resource('jabatan', JabatanController::class);
+    Route::resource('golongan', GolonganController::class);
     Route::get('/admin/pegawai/presensi/{id}', [HomeController::class,'employeePresence'])->name('presensi.pegawai');
     Route::get('/admin/pegawai/presensi-cetak', [HomeController::class,'printPresence'])->name('cetak.presensi');
 });
@@ -43,5 +43,5 @@ Route::group(['middleware'=>'admin'], function() {
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::get('/profil', [HomeController::class,'profile'])->name('profile');
-    Route::resource('presensi', PresenceController::class);
+    Route::resource('presensi', PresensiController::class);
 });

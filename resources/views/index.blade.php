@@ -32,17 +32,17 @@
                     <form action="{{route('presensi.store')}}" method="POST">
                         @csrf
                         @if ($button == "catat hadir")
-                            <input type="hidden" name="arrival_time" value="{{now()->toTimeString('second')}}">
-                            <input type="hidden" name="date" value="{{now()->toDateString('Y-m-d')}}">
+                            <input type="hidden" name="jam_datang" value="{{now()->toTimeString('second')}}">
+                            <input type="hidden" name="tanggal" value="{{now()->toDateString('Y-m-d')}}">
                         @elseif ($button == "catat pulang")
-                            <input type="hidden" name="return_time" value="{{now()->toTimeString('second')}}">
-                            <input type="hidden" name="presence_id" value="{{$presence->id}}">
-                            <input type="hidden" name="date" value="{{now()->toDateString('Y-m-d')}}">
+                            <input type="hidden" name="jam_pulang" value="{{now()->toTimeString('second')}}">
+                            <input type="hidden" name="presensi_id" value="{{$presence->id}}">
+                            <input type="hidden" name="tanggal" value="{{now()->toDateString('Y-m-d')}}">
                         @endif
 
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6"><button type="submit" class="btn btn-{{$type}}" @if ($button == "selesai") disabled @endif>{{$button}}</button></div>
+                                <div class="col-lg-6"><button type="submit" class="btn btn-{{$type}}" @if ($button == "Selamat Beristirahat") disabled @endif>{{$button}}</button></div>
                                 <div class="col-lg-6"><b>Status</b>: {{$status}}</div>
                             </div>
                         </div>
@@ -77,9 +77,9 @@
                             @foreach ($presences as $key => $presence)
                                 <tr>
                                     <td>{{$presences->lastItem() - $key}}</td>
-                                    <td>{{$presence->date}} @if ($presence->date == now()->toDateString('Y-m-d')) <span class="right badge badge-primary">Hari Ini</span> @endif</td>
-                                    <td>{{$presence->arrival_time}}</td>
-                                    <td>{{$presence->return_time}}</td>
+                                    <td>{{$presence->tanggal}} @if ($presence->tanggal == now()->toDateString('Y-m-d')) <span class="right badge badge-primary">Hari Ini</span> @endif</td>
+                                    <td>{{$presence->jam_datang}}</td>
+                                    <td>{{$presence->jam_pulang}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

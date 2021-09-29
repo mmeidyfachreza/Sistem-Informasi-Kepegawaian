@@ -36,8 +36,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nama Jabatan</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <label for="nama">Nama Jabatan</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
                                     placeholder="Masukan Nama Jabatan" required>
                             </div>
                         </div>

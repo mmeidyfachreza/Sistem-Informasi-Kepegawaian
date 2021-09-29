@@ -13,10 +13,10 @@ class CreatePresensisTable extends Migration
      */
     public function up()
     {
-        Schema::create('presensis', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('karyawan_id')->unsigned();
-            $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
+            $table->bigInteger('pegawai_id')->unsigned();
+            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
             $table->time('jam_datang');
             $table->time('jam_pulang')->nullable();
             $table->enum('izin',['izin','sakit']);
@@ -32,9 +32,9 @@ class CreatePresensisTable extends Migration
      */
     public function down()
     {
-        Schema::table('presensis', function (Blueprint $table) {
-            $table->dropForeign(['karyawan_id']);
+        Schema::table('presensi', function (Blueprint $table) {
+            $table->dropForeign(['pegawai_id']);
         });
-        Schema::dropIfExists('presensis');
+        Schema::dropIfExists('presensi');
     }
 }

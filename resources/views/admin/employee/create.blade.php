@@ -41,27 +41,27 @@
                                     placeholder="Masukan NIP Pegawai" value="{{old('nip')}}" required>
                             </div>
                             <div class="form-group">
-                                <label for="name">Nama</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
                                     placeholder="Masukan Nama Pegawai" value="{{old('name')}}" required>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="birth_place">Tempat Lahir</label>
-                                        <input type="text" class="form-control" id="birth_place" name="birth_place"
+                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
                                             placeholder="Masukan Tempat Lahir" value="{{old('birth_place')}}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Tanggal Lahir</label>
-                                          <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="birth_date" placeholder="dd/mm/yyyy" value="{{old('birth_date')}}" autocomplete="off" required/>
-                                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                              </div>
-                                          </div>
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="tempat_lahir" placeholder="dd/mm/yyyy" value="{{old('tempat_lahir')}}" autocomplete="off" required/>
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -69,50 +69,50 @@
                                 <label>Jenis Kelamin</label>
                                 @foreach ($genders as $gender)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="{{$gender}}" name="gender" value="{{$gender}}">
+                                        <input class="custom-control-input" type="radio" id="{{$gender}}" name="jenis_kelamin" value="{{$gender}}">
                                         <label for="{{$gender}}" class="custom-control-label">{{$gender}}</label>
                                       </div>
                                 @endforeach
                             </div>
                             <div class="form-group">
                                 <label>Agama</label>
-                                <select class="form-control select2" style="width: 100%;" name="religion">
+                                <select class="form-control select2" style="width: 100%;" name="agama">
                                     @foreach ($religions as $religion)
-                                    <option value="{{$religion}}" {{ $religion == old('religion') ? 'selected' : '' }}>{{$religion}}</option>
+                                    <option value="{{$religion}}" {{ $religion == old('agama') ? 'selected' : '' }}>{{$religion}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Pendidikan</label>
-                                <select class="form-control select2" style="width: 100%;" name="education">
+                                <select class="form-control select2" style="width: 100%;" name="pendidikan">
                                     @foreach ($educations as $education)
-                                    <option value="{{$education}}" {{ $education == old('education') ? 'selected' : '' }}>{{$education}}</option>
+                                    <option value="{{$education}}" {{ $education == old('pendidikan') ? 'selected' : '' }}>{{$education}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="major">Jurusan</label>
-                                <input type="text" class="form-control" id="major" name="major"
-                                    placeholder="Masukan Jurusan" value="{{old('major')}}" required>
+                                <label for="jurusan">Jurusan</label>
+                                <input type="text" class="form-control" id="jurusan" name="jurusan"
+                                    placeholder="Masukan Jurusan" value="{{old('jurusan')}}" required>
                             </div>
                             <div class="form-group">
-                                <label for="address">Alamat</label>
-                                <textarea class="form-control" id="address" name="address" id="address" cols="30" rows="2" required></textarea>
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" id="alamat" cols="30" rows="2" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Status Pernikahan</label>
                                 @foreach ($maritals as $marital)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="{{$marital}}" name="marital" value="{{$marital}}" @if ($marital == "belum menikah") checked @endif>
+                                        <input class="custom-control-input" type="radio" id="{{$marital}}" name="status_pernikahan" value="{{$marital}}" @if ($marital == "belum menikah") checked @endif>
                                         <label for="{{$marital}}" class="custom-control-label">{{$marital}}</label>
                                       </div>
                                 @endforeach
                             </div>
                             <div class="form-group">
                                 <label>Jabatan</label>
-                                <select class="form-control select2" style="width: 100%;" name="job_title_id">
+                                <select class="form-control select2" style="width: 100%;" name="jabatan_id">
                                     @foreach ($jobTitles as $jobTitle)
-                                    <option value="{{$jobTitle->id}}">{{$jobTitle->name}}</option>
+                                    <option value="{{$jobTitle->id}}">{{$jobTitle->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -122,7 +122,7 @@
                                         <label>Status Pegawai</label>
                                         @foreach ($status as $data)
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" id="{{$data}}" name="employee_status" value="{{$data}}" @if ($data == "pns") checked @endif onclick="myFunction()">
+                                                <input class="custom-control-input" type="radio" id="{{$data}}" name="status_pegawai" value="{{$data}}" @if ($data == "pns") checked @endif onclick="myFunction()">
                                                 <label for="{{$data}}" class="custom-control-label">{{$data}}</label>
                                             </div>
                                         @endforeach
@@ -131,10 +131,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group" style="display:block" id="section-field">
                                         <label>Golongan PNS</label>
-                                        <select class="form-control select2" style="width: 100%;" name="section_id">
+                                        <select class="form-control select2" style="width: 100%;" name="golongan_id">
                                             <option disabled selected>--Pilih--</option>
                                             @foreach ($sections as $section)
-                                            <option value="{{$section->id}}">{{$section->name}}</option>
+                                            <option value="{{$section->id}}">{{$section->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -143,7 +143,7 @@
                             <div class="form-group">
                                 <label>Tahun Diterima</label>
                                 <div class="input-group date" id="reservationdate3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="entry_year" value="{{old('entry_year')}}" required/>
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="tahun_masuk" value="{{old('tahun_masuk')}}" required/>
                                     <div class="input-group-append" data-target="#reservationdate3" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -167,18 +167,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Jenis Akun</label>
-                                <select class="form-control select2" style="width: 100%;" name="user_type">
+                                <select class="form-control select2" style="width: 100%;" name="tipe_user">
                                     @foreach ($user_types as $user_type)
-                                    <option value="{{$user_type}}" {{ $user_type == old('user_type') ? 'selected' : '' }}>{{$user_type}}</option>
+                                    <option value="{{$user_type}}" {{ $user_type == old('tipe_user') ? 'selected' : '' }}>{{$user_type}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="ijazah">Foto Pegawai</label>
+                                <label for="foto">Foto Pegawai</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input class="custom-file-input" type="file" accept="image/*" name="photo" onchange="preview_image(event)" required>
-                                        <label class="custom-file-label" for="photo">Pilih file</label>
+                                        <input class="custom-file-input" type="file" accept="image/*" name="foto" onchange="preview_image(event)" required>
+                                        <label class="custom-file-label" for="foto">Pilih file</label>
                                     </div>
                                 </div>
                                 <br>
@@ -210,7 +210,7 @@
 <script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
     function myFunction() {
-    var checked = document.querySelector('input[name="employee_status"]:checked').value;
+    var checked = document.querySelector('input[name="status_pegawai"]:checked').value;
     if (checked == "pns") {
         document.getElementById("section-field").style.display = 'block';
     } else {

@@ -53,9 +53,9 @@ class LoginController extends Controller
     //LAKUKAN LOGIN
     if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
         //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
-        if (auth()->user()->user_type == "admin") {
+        if (auth()->user()->tipe_user == "admin") {
             return redirect()->route('admin.home');
-        }elseif (auth()->user()->user_type == "staff"){
+        }elseif (auth()->user()->tipe_user == "staff"){
             return redirect()->route('home');
         }
 

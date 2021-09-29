@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Presence;
+use App\Models\Pegawai;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
@@ -27,11 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type == "admin") {
-            $pnsCount = Employee::where('employee_status','pns')->count();
-            $honorerCount = Employee::where('employee_status','honorer')->count();
-            $employeeCount = Employee::count();
-            $presences = Presence::with('employee')->orderBy('date','desc')->paginate();
+        if (auth()->user()->tipe_user == "admin") {
+            $pnsCount = Pegawai::where('status_pegawai','pns')->count();
+            $honorerCount = Pegawai::where('status_pegawai','honorer')->count();
+            $employeeCount = Pegawai::count();
+            $presences = Presensi::with('pegawai')->orderBy('tanggal','desc')->paginate();
             return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount','presences'));
         }else{
             return view('dashboard');
@@ -39,33 +39,33 @@ class HomeController extends Controller
 
     }
 
-    public function searchEmployee(Request $request)
+    public function searchPegawai(Request $request)
     {
-        if (auth()->user()->user_type == "admin") {
-            $pnsCount = Employee::where('employee_status','pns')->count();
-            $honorerCount = Employee::where('employee_status','honorer')->count();
-            $employeeCount = Employee::count();
-            $employee = Employee::with('jobTitle')->dashboardSearch($request->all())->first();
-            $presences = Presence::with('employee')->orderBy('date','desc')->paginate();
+        if (auth()->user()->tipe_user == "admin") {
+            $pnsCount = Pegawai::where('status_pegawai','pns')->count();
+            $honorerCount = Pegawai::where('status_pegawai','honorer')->count();
+            $employeeCount = Pegawai::count();
+            $employee = Pegawai::with('jabatan')->dashboardSearch($request->all())->first();
+            $presences = Presensi::with('pegawai')->orderBy('tanggal','desc')->paginate();
             return view('dashboard_admin',compact('pnsCount','honorerCount','employeeCount','employee','presences'));
         }else{
             //
         }
     }
 
-    public function employeePresence($id)
+    public function employeePresensi($id)
     {
         $date = Carbon::now()->format('Y-m');
-        $employee = Employee::find($id)->only('id','name');
-        $presences = Presence::with('employee')->where('employee_id',$id)->paginate();
+        $employee = Pegawai::find($id)->only('id','nama');
+        $presences = Presensi::with('pegawai')->where('pegawai_id',$id)->paginate();
         return view('admin.employee_presence',compact('presences','employee','date'));
     }
 
-    public function printPresence(Request $request)
+    public function printPresensi(Request $request)
     {
-        $employee = Employee::find($request->employee_id)->only('id','name','nip');
+        $employee = Pegawai::find($request->pegawai_id)->only('id','nama','nip');
         $date = explode('-',$request->month);
-        $presences = Presence::with('employee')->where('employee_id',$request->employee_id)->whereYear('date',$date[0])->whereMonth('date',str_replace('0','',$date[1]))->get();
+        $presences = Presensi::with('pegawai')->where('pegawai_id',$request->pegawai_id)->whereYear('tanggal',$date[0])->whereMonth('tanggal',str_replace('0','',$date[1]))->get();
         return view('admin.print_presence',compact('presences','employee','request'));
     }
 
@@ -93,7 +93,7 @@ class HomeController extends Controller
     public function profile()
     {
         $page = "Profil";
-        $employee = Employee::with('jobTitle','section')->findOrFail(auth()->user()->employee->id);
+        $employee = Pegawai::with('jabatan','golongan')->findOrFail(auth()->user()->pegawai->id);
         return view('admin.employee.show',compact('employee','page'));
     }
 }

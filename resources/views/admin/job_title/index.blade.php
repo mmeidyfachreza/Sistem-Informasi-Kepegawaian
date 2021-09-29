@@ -47,7 +47,7 @@
                             @foreach ($jobTitles as $key => $jobTitle)
                                 <tr>
                                     <td>{{$jobTitles->firstItem() + $key}}</td>
-                                    <td>{{$jobTitle->name}}</td>
+                                    <td>{{$jobTitle->nama}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-warning" href="{{route('jabatan.edit',$jobTitle->id)}}"><i

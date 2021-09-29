@@ -42,15 +42,15 @@
                                     placeholder="Masukan NIP" required>
                             </div>
                             <div class="form-group">
-                                <label for="name">Nama</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{old('name', $employee->name)}}"
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{old('name', $employee->nama)}}"
                                     placeholder="Masukan Nama" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="birth_place">Tempat Lahir</label>
-                                        <input type="text" class="form-control" id="birth_place" name="birth_place" value="{{old('birth_place', $employee->birth_place)}}"
+                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{old('tempat_lahir', $employee->tempat_lahir)}}"
                                             placeholder="Masukan Tempat Lahir" required>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <label>Tanggal Lahir</label>
                                           <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="birth_date" placeholder="dd/mm/yyyy" value="{{old('birth_date',date('d/m/Y', strtotime($employee->birth_date)))}}" required/>
+                                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="tanggal_lahir" placeholder="dd/mm/yyyy" value="{{old('tanggal_lahir',date('d/m/Y', strtotime($employee->tanggal_lahir)))}}" required/>
                                               <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                               </div>
@@ -70,49 +70,49 @@
                                 <label>Jenis Kelamin</label>
                                 @foreach ($genders as $gender)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="{{$gender}}" name="gender" value="{{$gender}}" @if ($employee->gender==$gender) checked @endif>
+                                        <input class="custom-control-input" type="radio" id="{{$gender}}" name="jenis_kelamin" value="{{$gender}}" @if ($employee->jenis_kelamin==$gender) checked @endif>
                                         <label for="{{$gender}}" class="custom-control-label">{{$gender}}</label>
                                       </div>
                                 @endforeach
                             </div>
                             <div class="form-group">
                                 <label>Agama</label>
-                                <select class="form-control select2" style="width: 100%;" name="religion">
+                                <select class="form-control select2" style="width: 100%;" name="agama">
                                     @foreach ($religions as $data)
-                                    <option value="{{$data}}" @if ($employee->religion==$data) selected @endif>{{$data}}</option>
+                                    <option value="{{$data}}" @if ($employee->agama==$data) selected @endif>{{$data}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Pendidikan</label>
-                                <select class="form-control select2" style="width: 100%;" name="education">
+                                <select class="form-control select2" style="width: 100%;" name="pendidikan">
                                     @foreach ($educations as $data)
-                                    <option value="{{$data}}" @if ($employee->education==$data) selected @endif>{{$data}}</option>
+                                    <option value="{{$data}}" @if ($employee->pendidikan==$data) selected @endif>{{$data}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="major">Jurusan</label>
-                                <input type="text" class="form-control" id="major" name="major" value="{{old('major', $employee->major)}}"placeholder="Masukan Jurusan" required>
+                                <label for="jurusan">Jurusan</label>
+                                <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{old('jurusan', $employee->jurusan)}}"placeholder="Masukan Jurusan" required>
                                 </div>
                             <div class="form-group">
-                                <label for="address">Alamat</label>
-                                <textarea class="form-control" id="address" name="address" id="address" cols="30" rows="2" required>{{$employee->address}}</textarea>
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" id="alamat" cols="30" rows="2" required>{{$employee->alamat}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Status Pernikahan</label>
                                 @foreach ($maritals as $marital)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="{{$marital}}" name="marital" value="{{$marital}}" @if ($employee->marital_status == $marital) checked @endif>
+                                        <input class="custom-control-input" type="radio" id="{{$marital}}" name="status_pernikahan" value="{{$marital}}" @if ($employee->status_pernikahan == $marital) checked @endif>
                                         <label for="{{$marital}}" class="custom-control-label">{{$marital}}</label>
                                       </div>
                                 @endforeach
                             </div>
                             <div class="form-group">
                                 <label>Jabatan</label>
-                                <select class="form-control select2" style="width: 100%;" name="job_title_id">
+                                <select class="form-control select2" style="width: 100%;" name="jabatan_id">
                                     @foreach ($jobTitles as $data)
-                                    <option value="{{$data->id}}" @if ($employee->jobTitle->id == $data->id) selected @endif>{{$data->name}}</option>
+                                    <option value="{{$data->id}}" @if ($employee->jabatan->id == $data->id) selected @endif>{{$data->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -122,19 +122,19 @@
                                         <label>Status Pegawai</label>
                                         @foreach ($status as $data)
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" id="{{$data}}" name="data" value="{{$data}}" @if ($employee->employee_status==$data) checked @endif>
+                                                <input class="custom-control-input" type="radio" id="{{$data}}" name="status_pegawai" value="{{$data}}" @if ($employee->status_pegawai==$data) checked @endif onclick="myFunction()">
                                                 <label for="{{$data}}" class="custom-control-label">{{$data}}</label>
-                                              </div>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group" style="display:block" id="section-field">
                                         <label>Golongan PNS</label>
-                                        <select class="form-control select2" style="width: 100%;" name="section_id">
+                                        <select class="form-control select2" style="width: 100%;" name="golongan_id">
                                             <option disabled selected>--Pilih--</option>
                                             @foreach ($sections as $section)
-                                            <option value="{{$section->id}}" @if ($employee->section->id == $section->id) selected @endif>{{$section->name}}</option>
+                                            <option value="{{$section->id}}" @if ($employee->golongan->id == $section->id) selected @endif>{{$section->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -143,12 +143,12 @@
 
                             <div class="form-group">
                                 <label>Tahun Diterima</label>
-                                  <div class="input-group date" id="reservationdate3" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="entry_year" value="{{old('entry_year', $employee->entry_year)}}" required/>
-                                      <div class="input-group-append" data-target="#reservationdate3" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                      </div>
-                                  </div>
+                                <div class="input-group date" id="reservationdate3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate3" name="tahun_masuk" value="{{old('tahun_masuk', $employee->tahun_masuk)}}" required/>
+                                    <div class="input-group-append" data-target="#reservationdate3" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -167,22 +167,22 @@
                             </div>
                             <div class="form-group">
                                 <label>Jenis Akun</label>
-                                <select class="form-control select2" style="width: 100%;" name="user_type">
+                                <select class="form-control select2" style="width: 100%;" name="tipe_user">
                                     @foreach ($user_types as $user_type)
-                                    <option value="{{$user_type}}" @if ($employee->user->user_type == $user_type) selected @endif>{{$user_type}}</option>
+                                    <option value="{{$user_type}}" @if ($employee->user->tipe_user == $user_type) selected @endif>{{$user_type}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="photo">Foto Siswa</label>
+                                <label for="foto">Foto Pegawai</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input class="custom-file-input" type="file" accept="image/*" name="photo" onchange="preview_image(event)">
-                                        <label class="custom-file-label" for="photo">Pilih file</label>
+                                        <input class="custom-file-input" type="file" accept="image/*" name="foto" onchange="preview_image(event)">
+                                        <label class="custom-file-label" for="foto">Pilih file</label>
                                     </div>
                                 </div>
                                 <br>
-                                <img style="width:30%" id="output_image" src="{{asset('storage/photos/'.$employee->photo)}}"/>
+                                <img style="width:30%" id="output_image" src="{{asset('storage/foto/'.$employee->foto)}}"/>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -210,13 +210,22 @@
 <script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
     window.addEventListener("load",function(){
-        var checked = document.querySelector('input[name="employee_status"]:checked').value;
+        var checked = document.querySelector('input[name="status_pegawai"]:checked').value;
     if (checked == "pns") {
         document.getElementById("section-field").style.display = 'block';
     } else {
         document.getElementById("section-field").style.display = 'none';
     }
     })
+
+    function myFunction() {
+    var checked = document.querySelector('input[name="status_pegawai"]:checked').value;
+    if (checked == "pns") {
+        document.getElementById("section-field").style.display = 'block';
+    } else {
+        document.getElementById("section-field").style.display = 'none';
+    }
+    }
     $(function () {
         //Initialize Select2 Elements
         bsCustomFileInput.init();

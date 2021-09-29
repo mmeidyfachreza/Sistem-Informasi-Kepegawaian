@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Section;
+use App\Models\Golongan;
 use Illuminate\Database\Seeder;
 
 class SectionTableSeeder extends Seeder
@@ -16,7 +16,7 @@ class SectionTableSeeder extends Seeder
     {
         $data = array('Golongan I','Golongan II','Golongan III');
         foreach ($data as $value) {
-            Section::create(['name'=>$value]);
+            Golongan::create(['nama'=>$value]);
         }
     }
 }
