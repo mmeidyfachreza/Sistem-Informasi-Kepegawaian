@@ -53,7 +53,7 @@ class HomeController extends Controller
         }
     }
 
-    public function employeePresensi($id)
+    public function employeePresence($id)
     {
         $date = Carbon::now()->format('Y-m');
         $employee = Pegawai::find($id)->only('id','nama');
@@ -61,7 +61,7 @@ class HomeController extends Controller
         return view('admin.employee_presence',compact('presences','employee','date'));
     }
 
-    public function printPresensi(Request $request)
+    public function printPresence(Request $request)
     {
         $employee = Pegawai::find($request->pegawai_id)->only('id','nama','nip');
         $date = explode('-',$request->month);

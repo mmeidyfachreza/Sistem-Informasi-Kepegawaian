@@ -25,7 +25,7 @@
                 <!-- general form elements -->
                 <div class="card">
                     <div class="card-header">
-                        <div style="float:left" class="card-title">Presensi {{$employee['name']}}</div>
+                        <div style="float:left" class="card-title">Presensi {{$employee['nama']}}</div>
                         <div style="float:right">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <form action="{{route('cetak.presensi')}}" method="GET" target="_blank">

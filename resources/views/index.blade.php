@@ -31,18 +31,23 @@
                 <div id="collapseOne" class="collapse @isset($request) show @endisset" data-parent="#accordion">
                     <form action="{{route('presensi.store')}}" method="POST">
                         @csrf
-                        @if ($button == "catat hadir")
-                            <input type="hidden" name="jam_datang" value="{{now()->toTimeString('second')}}">
-                            <input type="hidden" name="tanggal" value="{{now()->toDateString('Y-m-d')}}">
-                        @elseif ($button == "catat pulang")
-                            <input type="hidden" name="jam_pulang" value="{{now()->toTimeString('second')}}">
+                        @if ($button == "catat pulang")
                             <input type="hidden" name="presensi_id" value="{{$presence->id}}">
-                            <input type="hidden" name="tanggal" value="{{now()->toDateString('Y-m-d')}}">
                         @endif
 
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6"><button type="submit" class="btn btn-{{$type}}" @if ($button == "Selamat Beristirahat") disabled @endif>{{$button}}</button></div>
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-{{$type}}" @if ($button == "Selamat Beristirahat") disabled @endif>{{$button}}</button>
+                                    @if ($button !="Selamat Beristirahat")
+                                    atau
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="" class="btn btn-primary">Izin</a>
+                                        <a href="" class="btn btn-warning">Sakit</a>
+                                    </div>
+
+                                    @endif
+                                </div>
                                 <div class="col-lg-6"><b>Status</b>: {{$status}}</div>
                             </div>
                         </div>
@@ -69,6 +74,7 @@
                             <th>Tanggal</th>
                             <th>Jam Datang</th>
                             <th>Jam Pulang</th>
+                            <th>Status</th>
                             {{-- <th>Aksi</th> --}}
                           </tr>
                         </thead>
@@ -80,6 +86,7 @@
                                     <td>{{$presence->tanggal}} @if ($presence->tanggal == now()->toDateString('Y-m-d')) <span class="right badge badge-primary">Hari Ini</span> @endif</td>
                                     <td>{{$presence->jam_datang}}</td>
                                     <td>{{$presence->jam_pulang}}</td>
+                                    <td>{{$presence->status}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

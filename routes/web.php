@@ -22,8 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/tes', function () {
-    echo "ok";
+    return view('admin.print_all_presence');
 });
+
+Route::get('tes2', [PresensiController::class,'allEmployee']);
+Route::get('tes3', [PresensiController::class,'allEmployeeFilter'])->name('presence.filter');
 
 Auth::routes();
 
@@ -38,10 +41,12 @@ Route::group(['middleware'=>'admin'], function() {
     Route::resource('golongan', GolonganController::class);
     Route::get('/admin/pegawai/presensi/{id}', [HomeController::class,'employeePresence'])->name('presensi.pegawai');
     Route::get('/admin/pegawai/presensi-cetak', [HomeController::class,'printPresence'])->name('cetak.presensi');
+    Route::get('/admin/presensi-pegawai', [PresensiController::class,'allEmployee'])->name('presensi.keseluruhan');
 });
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::get('/profil', [HomeController::class,'profile'])->name('profile');
     Route::resource('presensi', PresensiController::class);
+    Route::get('/catat-izin', [PresensiController::class,'permit'])->name('permit');
 });

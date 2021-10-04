@@ -17,9 +17,9 @@ class CreatePresensisTable extends Migration
             $table->id();
             $table->bigInteger('pegawai_id')->unsigned();
             $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
-            $table->time('jam_datang');
+            $table->time('jam_datang')->nullable();
             $table->time('jam_pulang')->nullable();
-            $table->enum('izin',['izin','sakit']);
+            $table->enum('status',['hadir','alpa','izin','sakit'])->default('alpa');
             $table->date('tanggal');
             $table->timestamps();
         });

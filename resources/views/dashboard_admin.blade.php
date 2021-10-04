@@ -90,10 +90,10 @@
                           @foreach ($presences as $key => $presence)
                               <tr>
                                   <td>{{$presences->firstItem() + $key}}</td>
-                                  <td>{{$presence->employee->name}}</td>
-                                  <td>{{$presence->date}}</td>
-                                  <td>{{$presence->arrival_time}}</td>
-                                  <td>{{$presence->return_time}}</td>
+                                  <td>{{$presence->pegawai->nama}}</td>
+                                  <td>{{$presence->tanggal}}</td>
+                                  <td>{{$presence->jam_datang}}</td>
+                                  <td>{{$presence->jam_pulang}}</td>
                               </tr>
                           @endforeach
                       </tbody>
@@ -170,43 +170,43 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Nama</td>
-                                                        <td>{{$employee->name}}</td>
+                                                        <td>{{$employee->nama}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Alamat</td>
-                                                        <td>{{$employee->address}}</td>
+                                                        <td>{{$employee->alamat}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tempat Lahir</td>
-                                                        <td>{{$employee->birth_place}}</td>
+                                                        <td>{{$employee->tempat_lahir}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tanggal Lahir</td>
-                                                        <td>{{date('d-m-Y', strtotime($employee->birth_date))}}</td>
+                                                        <td>{{date('d-m-Y', strtotime($employee->tanggal_lahir))}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Agama</td>
-                                                        <td>{{$employee->religion}}</td>
+                                                        <td>{{$employee->agama}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jenis Kelamin</td>
-                                                        <td>{{$employee->gender}}</td>
+                                                        <td>{{$employee->jenis_kelamin}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Status Pegawai</td>
-                                                        <td>{{$employee->employee_status}}</td>
+                                                        <td>{{$employee->status_pegawai}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Status Pernikahan</td>
-                                                        <td>{{$employee->marital_status}}</td>
+                                                        <td>{{$employee->status_pernikahan}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tahun Diterima</td>
-                                                        <td>{{$employee->entry_year}}</td>
+                                                        <td>{{$employee->tahun_masuk}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jabatan</td>
-                                                        <td>{{$employee->jobTitle->name}}</td>
+                                                        <td>{{$employee->jabatan->nama}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

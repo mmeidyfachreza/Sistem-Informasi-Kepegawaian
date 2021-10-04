@@ -27,7 +27,7 @@
 <body>
     <p>Nama    : <b>{{$employee['nama']}}</b></p>
     <p>NIP     : <b>{{$employee['nip']}}</b></p>
-    <p>Tanggal : <b>{{$request->month}}</b></p>
+    <p>Tahun/Bulan : <b>{{$request->month}}</b></p>
     <br>
 <table>
     <thead>
@@ -40,7 +40,7 @@
     <tbody>
         @foreach ($presences as $presence)
         <tr>
-            <td>{{$presence->tangal}}</td>
+            <td>{{$presence->tanggal}}</td>
             <td>{{$presence->jam_datang}}</td>
             <td>{{$presence->jam_pulang}}</td>
         </tr>

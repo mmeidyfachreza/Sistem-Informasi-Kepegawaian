@@ -57,6 +57,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('presensi.keseluruhan')}}" class="nav-link">
+                    <i class="nav-icon fas fa-clipboard-check"></i>
+                    <p>
+                        Presensi Pegawai
+                    </p>
+                </a>
+            </li>
 
             {{-- <li class="nav-item">
                 <a href="{{route('akun-sekolah.index')}}" class="nav-link">
