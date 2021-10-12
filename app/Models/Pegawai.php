@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -36,6 +37,16 @@ class Pegawai extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function presensi()
+    {
+        return $this->hasMany(Presensi::class);
+    }
+
+    public function attendanceToday()
+    {
+        return $this->hasOne(Presensi::class)->where("presensi.tanggal",Carbon::now()->format('Y-m-d'));
     }
 
     public function golongan()

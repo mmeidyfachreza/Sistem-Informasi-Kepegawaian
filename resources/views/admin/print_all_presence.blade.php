@@ -21,61 +21,48 @@
 
 </head>
 <body>
-    <p>Bulan : <b>{{$date}}</b></p>
+    <p>Bulan : <b>{{date('F Y', strtotime($date))}}</b></p>
     <br>
-<table>
-    <thead>
-        <tr>
-            <td rowspan="2">No</td>
-            <td rowspan="2">Nama</td>
-            <td colspan="{{$day}}">Tanggal</td>
-            <td colspan="4">Jumlah</td>
-            <td rowspan="2">Presentase Kehadiran</td>
-        </tr>
-        <tr>
-            @for ($i=1;$i<=$day;$i++)
-            <td>{{$i}}</td>
-            @endfor
-            <td>Hadir</td>
-            <td>Alpha</td>
-            <td>Izin</td>
-            <td>Sakir</td>
-        </tr>
-    </thead>
-    <tbody>
-        <?php $x=1 ?>
-        @foreach ($presences as $employee => $presence)
-        <?php $hadir=0; $alpa=0; $izin=0; $sakit=0; ?>
-        <tr>
-            <td>{{$x++}}</td>
-            <td>{{$employee}}</td>
-            @for ($i=0;$i<$day;$i++)
-                @if (isset($presence[$i]))
-                    @if ($presence[$i]->status=="hadir")
-                        <?php $hadir++ ?>
-                        <td>.</td>
-                    @elseif ($presence[$i]->status=="izin")
-                    <?php $izin++ ?>
-                        <td>i</td>
-                    @elseif ($presence[$i]->status=="sakit")
-                    <?php $sakit++ ?>
-                        <td>s</td>
-                    @elseif ($presence[$i]->status=="alpa")
-                    <?php $alpa++ ?>
-                        <td>a</td>
+    <table>
+        <thead>
+            <tr>
+                <td rowspan="2">No</td>
+                <td rowspan="2">Nama</td>
+                <td colspan="{{$day}}">Tanggal</td>
+                <td colspan="4">Jumlah</td>
+                <td rowspan="2">Presentase Kehadiran</td>
+            </tr>
+            <tr>
+                @for ($i=1;$i<=$day;$i++)
+                <td>{{$i}}</td>
+                @endfor
+                <td>Hadir</td>
+                <td>Alpha</td>
+                <td>Izin</td>
+                <td>Sakir</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $x=1 ?>
+            @foreach ($presences as $employee => $presence)
+            <tr>
+                <td>{{$x++}}</td>
+                <td>{{$employee}}</td>
+                @for ($i=1;$i<=$day;$i++)
+                    @if (isset($presence["rekap"][$i]))
+                        <td>{{$presence["rekap"][$i]}}</td>
+                    @else
+                        <td> </td>
                     @endif
-                @else
-                    <td name > </td>
-                @endif
-            @endfor
-            <td>{{$hadir}}</td>
-            <td>{{$alpa}}</td>
-            <td>{{$izin}}</td>
-            <td>{{$sakit}}</td>
-            <td>{{number_format((float)($hadir/$day)*100,2,'.','') }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                @endfor
+                <td>{{$presence["hadir"]}}</td>
+                <td>{{$presence["alpa"]}}</td>
+                <td>{{$presence["izin"]}}</td>
+                <td>{{$presence["sakit"]}}</td>
+                <td>{{$presence["presentase_kehadiran"]}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>

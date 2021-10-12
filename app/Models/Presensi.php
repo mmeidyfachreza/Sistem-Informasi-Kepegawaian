@@ -11,7 +11,6 @@ class Presensi extends Model
 
     protected $table = 'presensi';
     protected $fillable = ['pegawai_id','jam_datang','jam_pulang','tanggal','status'];
-    protected $appends = ['total'];
 
     public function pegawai()
     {
@@ -20,14 +19,11 @@ class Presensi extends Model
 
     public function scopeIsArrival($query)
     {
-        if ($this->where('pegawai_id',auth()->user()->pegawai->id)
+        return $query->where('pegawai_id',auth()->user()->pegawai->id)
         ->where('tanggal',now()->toDateString('Y-m-d'))
-        ->whereNotIn('status',['izin','sakit','alpa'])
-        ->first()) {
-            return true;
-        }else{
-            return false;
-        }
+        ->whereNotNull('jam_datang')
+        ->whereNull('status')
+        ->exists();
 
     }
 
@@ -44,8 +40,10 @@ class Presensi extends Model
         }
     }
 
-    public function getTotalAttribute()
+    public function scopeAttendanceThisDay($query,$employee_id)
     {
-        return $this->where('status','hadir')->count();
+        return $query->where('pegawai_id',$employee_id)
+        ->where('tanggal',now()->toDateString('Y-m-d'))
+        ->first();
     }
 }
