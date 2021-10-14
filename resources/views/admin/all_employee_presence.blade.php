@@ -138,6 +138,7 @@
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-info" href="{{route('presence.record.permit',$employee->id)}}">catat izin</a>
                                             <a class="btn btn-warning" href="{{route('presence.record.sick',$employee->id)}}">catat sakit</a>
+                                            <a class="btn btn-danger" href="{{route('presence.record.alpa',$employee->id)}}">catat alpa</a>
                                         </div>
                                     </td>
                                 @endif

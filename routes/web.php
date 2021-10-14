@@ -46,6 +46,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin/presensi-pegawai/print', [PresensiController::class,'allEmployeePrint'])->name('presence.all.print');
     Route::get('/admin/presensi-pegawai/izin/{id}', [PresensiController::class,'employeePermit'])->name('presence.record.permit');
     Route::get('/admin/presensi-pegawai/sakit/{id}', [PresensiController::class,'employeeSick'])->name('presence.record.sick');
+    Route::get('/admin/presensi-pegawai/alpa/{id}', [PresensiController::class,'employeeAlpa'])->name('presence.record.alpa');
 });
 
 Route::group(['middleware'=>'auth'], function() {

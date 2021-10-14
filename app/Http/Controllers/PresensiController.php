@@ -292,4 +292,21 @@ class PresensiController extends Controller
             return redirect()->route('presensi.keseluruhan')->with('success','Berhasil catat sakit');
         }
     }
+
+    public function employeeAlpa($id)
+    {
+        if (!Presensi::isArrival()) {
+            Presensi::create([
+                'pegawai_id'=>$id,
+                'tanggal'=>Carbon::now()->format('Y-m-d'),
+                'status'=>"alpa"
+            ]);
+            return redirect()->route('presensi.keseluruhan')->with('success','Berhasil catat alpa');
+        }else{
+            Presensi::attendanceThisDay($id)->update([
+                'status'=>'alpa'
+            ]);
+            return redirect()->route('presensi.keseluruhan')->with('success','Berhasil catat alpa');
+        }
+    }
 }
