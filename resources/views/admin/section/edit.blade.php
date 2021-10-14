@@ -37,8 +37,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nama Golongan</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{old('name', $section->name)}}"
+                                <label for="nama">Nama Golongan</label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama', $section->nama)}}"
                                     placeholder="Masukan Nama Golongan" required>
                             </div>
                         </div>
