@@ -129,7 +129,7 @@
                                 <td>{{$employee->nama}}</td>
                                 <td>{{$employee->nip}}</td>
                                 <td>{{$employee->status_pegawai}}</td>
-                                @if (isset($employee->attendanceToday->status) && in_array($employee->attendanceToday->status,["izin","sakit"]))
+                                @if (isset($employee->attendanceToday->status) && in_array($employee->attendanceToday->status,["izin","sakit","alpa"]))
                                     <td>
                                         tercatat telah {{$employee->attendanceToday->status}} hari ini
                                     </td>
