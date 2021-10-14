@@ -30,7 +30,7 @@ class CreatePegawaisTable extends Migration
             $table->string("tahun_masuk");
             $table->bigInteger('golongan_id')->unsigned()->nullable();
             $table->foreign('golongan_id')->references('id')->on('golongan')->nullOnDelete();
-            $table->bigInteger('jabatan_id')->unsigned();
+            $table->bigInteger('jabatan_id')->unsigned()->nullable();
             $table->foreign('jabatan_id')->references('id')->on('jabatan')->nullOnDelete();
             $table->string('foto')->default("default.jpg");
             $table->timestamps();
