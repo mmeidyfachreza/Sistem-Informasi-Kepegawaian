@@ -47,7 +47,7 @@
                             @foreach ($sections as $key => $section)
                                 <tr>
                                     <td>{{$sections->firstItem() + $key}}</td>
-                                    <td>{{$section->name}}</td>
+                                    <td>{{$section->nama}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-warning" href="{{route('golongan.edit',$section->id)}}"><i
