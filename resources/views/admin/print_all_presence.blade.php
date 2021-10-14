@@ -50,7 +50,11 @@
                 <td>{{$employee}}</td>
                 @for ($i=1;$i<=$day;$i++)
                     @if (isset($presence["rekap"][$i]))
+                        @if ($presence["rekap"][$i]=='h')
+                        <td><img src="{{asset('assets/dist/img/done.png')}}" style="height: 20px;weight: 20px" alt="h"></td>
+                        @else
                         <td>{{$presence["rekap"][$i]}}</td>
+                        @endif
                     @else
                         <td> </td>
                     @endif

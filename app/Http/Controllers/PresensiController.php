@@ -139,7 +139,7 @@ class PresensiController extends Controller
                 "rekap"=>collect($item)->mapWithKeys(function($data,$key){
                     switch ($data->status) {
                         case 'hadir':
-                            $data->status = ".";
+                            $data->status = "h";
                             break;
                         case 'izin':
                             $data->status = "i";
@@ -186,7 +186,7 @@ class PresensiController extends Controller
                 "rekap"=>collect($item)->mapWithKeys(function($data,$key){
                     switch ($data->status) {
                         case 'hadir':
-                            $data->status = ".";
+                            $data->status = "h";
                             break;
                         case 'izin':
                             $data->status = "i";
@@ -232,7 +232,7 @@ class PresensiController extends Controller
                 "rekap"=>collect($item)->mapWithKeys(function($data,$key){
                     switch ($data->status) {
                         case 'hadir':
-                            $data->status = ".";
+                            $data->status = "h";
                             break;
                         case 'izin':
                             $data->status = "i";
