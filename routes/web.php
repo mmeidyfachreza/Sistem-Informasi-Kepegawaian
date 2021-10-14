@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PresensiController;
-use App\Http\Controllers\GolongaController;
+use App\Http\Controllers\GolonganController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +37,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::resource('pegawai', PegawaiController::class);
     Route::post('/pegawai/cari', [PegawaiController::class,'search'])->name('search.employee');
     Route::resource('jabatan', JabatanController::class);
-    Route::resource('golongan', GolongaController::class);
+    Route::resource('golongan', GolonganController::class);
     Route::get('/admin/pegawai/presensi/{id}', [HomeController::class,'employeePresence'])->name('presensi.pegawai');
     Route::get('/admin/pegawai/presensi-cetak', [HomeController::class,'printPresence'])->name('cetak.presensi');
     Route::get('/admin/presensi-pegawai', [PresensiController::class,'allEmployee'])->name('presensi.keseluruhan');
