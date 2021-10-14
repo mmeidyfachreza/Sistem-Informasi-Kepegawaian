@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Golongan;
 use Illuminate\Http\Request;
 
-class GolongaController extends Controller
+class GolonganController extends Controller
 {
     /**
      * Display a listing of the resource.

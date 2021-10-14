@@ -37,7 +37,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
         Jabatan::create($request->all());
-        return redirect()->route('golongan.index')->with('success','Berhasil menambah data');
+        return redirect()->route('jabatan.index')->with('success','Berhasil menambah data');
     }
 
     /**
@@ -62,7 +62,7 @@ class JabatanController extends Controller
     public function update(Request $request, $id)
     {
         Jabatan::findOrFail($id)->update($request->all());
-        return redirect()->route('golongan.index')->with('success','Berhasil merubah data');
+        return redirect()->route('jabatan.index')->with('success','Berhasil merubah data');
     }
 
     /**
@@ -74,6 +74,6 @@ class JabatanController extends Controller
     public function destroy($id)
     {
         Jabatan::findOrFail($id)->delete();
-        return redirect()->route('golongan.index')->with('success','Berhasil menghapus data');
+        return redirect()->route('jabatan.index')->with('success','Berhasil menghapus data');
     }
 }
