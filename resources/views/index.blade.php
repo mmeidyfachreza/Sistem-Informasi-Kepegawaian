@@ -67,13 +67,20 @@
                                     <td>{{$presences->lastItem() - $key}}</td>
                                     <td>{{$presence->tanggal}} @if ($presence->tanggal == now()->toDateString('Y-m-d'))
                                         <span class="right badge badge-primary">Hari Ini</span> @endif</td>
-                                    <td>{{$presence->jam_datang}}</td>
-                                    <td>@if ($presence->tanggal == now()->toDateString('Y-m-d') && !$presence->jam_pulang)
-                                        <a href="{{route("catat.kehadiran")}}" class="btn btn-success">Catat Pulang</a>
+                                    @if (in_array($presence->status,["izin","sakit","alpa"]))
+                                        <td></td>
+                                        <td></td>
                                     @else
-                                        {{$presence->jam_pulang}}
+                                        <td>{{$presence->jam_datang}}</td>
+                                        <td>
+                                            @if ($presence->tanggal == now()->toDateString('Y-m-d') && !$presence->jam_pulang)
+                                            <a href="{{route("catat.kehadiran")}}" class="btn btn-success">Catat Pulang</a>
+                                            @else
+                                                {{$presence->jam_pulang}}
+                                            @endif
+                                        </td>
                                     @endif
-                                    </td>
+
                                     <td>{{$presence->status}}</td>
                                 </tr>
                                 @endforeach
