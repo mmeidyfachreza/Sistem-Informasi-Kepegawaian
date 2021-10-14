@@ -36,8 +36,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nama Golongan</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <label for="nama">Nama Golongan</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
                                     placeholder="Masukan Nama Golongan" required>
                             </div>
                         </div>
