@@ -28,25 +28,25 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Data Jabatan</h3>
+                        <h3 class="card-title">Edit Data Golongan</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{route('jabatan.update',$section->id)}}" method="POST">
+                    <form action="{{route('golongan.update',$section->id)}}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Nama jabatan</label>
+                                <label for="name">Nama Golongan</label>
                                 <input type="text" class="form-control" id="name" name="name" value="{{old('name', $section->name)}}"
-                                    placeholder="Masukan Nama jabatan" required>
+                                    placeholder="Masukan Nama Golongan" required>
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{route('jabatan.index')}}" class="btn btn-danger">Batal</a>
+                            <a href="{{route('golongan.index')}}" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>
