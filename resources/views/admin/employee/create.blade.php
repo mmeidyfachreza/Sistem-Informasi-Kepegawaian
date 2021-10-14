@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label>Tanggal Lahir</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="tempat_lahir" placeholder="dd/mm/yyyy" value="{{old('tempat_lahir')}}" autocomplete="off" required/>
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="tanggal_lahir" placeholder="dd/mm/yyyy" value="{{old('tanggal_lahir')}}" autocomplete="off" required/>
                                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
